@@ -19,7 +19,6 @@ const updateBook = (req, res) => {
         return res.status(400).send({message: `Book with Id ${id} is not found`});
     } 
 
-    console.log(`Book index ${index}`)
     books[index] = payload;
     res.send(payload);
 }
@@ -31,4 +30,22 @@ const createBook = (req, res) => {
     res.send(newBook);
 }
 
-module.exports = {getAllBooks, getBookById, updateBook, createBook}
+const searchBooks = (req, res) => {
+    let searchText = req.query.query;
+    if (!searchText) return getAllBooks(req, res);
+
+    const filteredBooks = books.filter(book => containsIgnoreCase(book.title, searchText) 
+                                ||  containsIgnoreCase(book.description, searchText)
+                                || containsIgnoreCase(book.isbn, searchText));
+
+    res.send(filteredBooks);
+}
+
+const containsIgnoreCase = (source, value) => {
+    source = source.toLowerCase();
+    value = value.toLowerCase();
+
+    return source.search(value) >= 0;
+}
+
+module.exports = {getAllBooks, getBookById, updateBook, createBook, searchBooks}
