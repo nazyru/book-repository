@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const schema = Joi.object({
-  title: Joi.string().min(10).max(32).required(),
-  description: Joi.string().min(20).max(128).required(),
-  isbn: Joi.string().max(32).required()
+  title: Joi.string().min(5).max(64).required(),
+  description: Joi.string().min(10).max(128).required(),
+  isbn: Joi.string().min(13).max(16).required()
 });
 
 const validator = (req, res, next) => {

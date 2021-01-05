@@ -6,9 +6,9 @@ const books = [{
 },
 {
     id: 2,
-    title: 'Brighter Grammer',
+    title: 'Introduction to Javascript',
     isbn: '1234567',
-    description: 'A book on learning english'
+    description: 'A book on learning the basics of Javascript'
 },
 {
     id: 3,
